@@ -35,9 +35,11 @@ if [ "$LANGUAGE" = "java" ]; then
 fi
 
 if [ "$LANGUAGE" = "golang" ]; then
-	CC_SRC_PATH="github.com/chaincode/company/go/"
-    
+	CC_SRC_PATH1="github.com/chaincode/company/go/"
+    CC_SRC_PATH2="github.com/chaincode/document/go/"
 fi
+
+
 
 echo "Channel name : "$CHANNEL_NAME
 
