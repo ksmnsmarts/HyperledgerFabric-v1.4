@@ -25,8 +25,10 @@ type Document struct {
 	OriginalFileName 		string `json:"originalFileName"`
 	FileName 				string `json:"fileName"`
 	FileSize 				string `json:"fileSize"`
-	SaveKey					string `json:"saveKey`
+	SaveKey					string `json:"saveKey"`
 	Hash 					string `json:"hash"`
+	FileBuffer 				string `json:"fileBuffer"`
+
 }
 
 /*
@@ -78,11 +80,11 @@ func (s *SmartContract) createDocument(APIstub shim.ChaincodeStubInterface, args
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 9 {
-		return shim.Error("Incorrect number of arguments. Expecting 9")
+	if len(args) != 10 {
+		return shim.Error("Incorrect number of arguments. Expecting 10")
 	}
 
-	var document = Document{Uploader: args[1], Title: args[2], Content: args[3], OriginalFileName: args[4], FileName: args[5], FileSize: args[6], SaveKey: args[7], Hash: args[8]}
+	var document = Document{Uploader: args[1], Title: args[2], Content: args[3], OriginalFileName: args[4], FileName: args[5], FileSize: args[6], SaveKey: args[7], Hash: args[8], FileBuffer: args[9]}
 
 	// var company = Company{Company_name: args[1], My_name: args[2], Your_name: args[3]}
 
