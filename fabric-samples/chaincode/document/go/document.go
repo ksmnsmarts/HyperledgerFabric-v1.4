@@ -19,6 +19,7 @@ type SmartContract struct {
 // Define the car structure, with 4 properties.  Structure tags are used by encoding/json library
 type Document struct {
 	Id						string `json:"id"`
+	CompanyId   			string `json:"companyId"`
 	Uploader   				string `json:"uploader"`
 	Title  					string `json:"title"`
 	Content  				string `json:"content"`
@@ -80,11 +81,11 @@ func (s *SmartContract) createDocument(APIstub shim.ChaincodeStubInterface, args
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 10 {
-		return shim.Error("Incorrect number of arguments. Expecting 10")
+	if len(args) != 11 {
+		return shim.Error("Incorrect number of arguments. Expecting 11")
 	}
 
-	var document = Document{Uploader: args[1], Title: args[2], Content: args[3], OriginalFileName: args[4], FileName: args[5], FileSize: args[6], SaveKey: args[7], Hash: args[8], FileBuffer: args[9]}
+	var document = Document{CompanyId: args[1], Uploader: args[2], Title: args[3], Content: args[4], OriginalFileName: args[5], FileName: args[6], FileSize: args[7], SaveKey: args[8], Hash: args[9], FileBuffer: args[10]}
 
 	// var company = Company{Company_name: args[1], My_name: args[2], Your_name: args[3]}
 
