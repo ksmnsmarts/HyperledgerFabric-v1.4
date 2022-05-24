@@ -125,6 +125,9 @@ installChaincode() {
   peer chaincode install -n document -v ${VERSION} -l ${LANGUAGE} -p ${CC_SRC_PATH2} >&log.txt
   res=$?
   set +x
+  peer chaincode install -n contract -v ${VERSION} -l ${LANGUAGE} -p ${CC_SRC_PATH3} >&log.txt
+  res=$?
+  set +x
   cat log.txt
   verifyResult $res "Chaincode installation on peer${PEER}.org${ORG} has failed"
   echo "===================== Chaincode is installed on peer${PEER}.org${ORG} ===================== "
@@ -148,6 +151,9 @@ instantiateChaincode() {
     peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n document -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
     res=$?
     set +x
+    peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
+    res=$?
+    set +x
   else
     set -x
     peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n leave -l ${LANGUAGE} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
@@ -155,6 +161,10 @@ instantiateChaincode() {
     set +x
     set -x
     peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n document -l ${LANGUAGE} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
+    res=$?
+    set +x
+    set -x
+    peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
     res=$?
     set +x
   fi
@@ -174,6 +184,9 @@ upgradeChaincode() {
   res=$?
   set +x
   peer chaincode upgrade -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n document -v 2.0 -c '{"Args":["init","a","90","b","210"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"
+  res=$?
+  set +x
+  peer chaincode upgrade -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n contract -v 2.0 -c '{"Args":["init","a","90","b","210"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"
   res=$?
   set +x
   cat log.txt
@@ -203,6 +216,9 @@ chaincodeQuery() {
     res=$?
     set +x
     peer chaincode query -C $CHANNEL_NAME -n document -c '{"Args":["queryTest","a"]}' >&log.txt
+    res=$?
+    set +x
+    peer chaincode query -C $CHANNEL_NAME -n contract -c '{"Args":["queryTest","a"]}' >&log.txt
     res=$?
     set +x
     test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')
@@ -327,12 +343,18 @@ chaincodeInvoke() {
     peer chaincode invoke -o orderer.example.com:7050 -C $CHANNEL_NAME -n document $PEER_CONN_PARMS -c '{"Args":["invoke","a","b","10"]}' >&log.txt
     res=$?
     set +x
+    peer chaincode invoke -o orderer.example.com:7050 -C $CHANNEL_NAME -n contract $PEER_CONN_PARMS -c '{"Args":["invoke","a","b","10"]}' >&log.txt
+    res=$?
+    set +x
   else
     set -x
     peer chaincode invoke -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n leave $PEER_CONN_PARMS -c '{"Args":["invoke","a","b","10"]}' >&log.txt
     res=$?
     set +x
     peer chaincode invoke -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n document $PEER_CONN_PARMS -c '{"Args":["invoke","a","b","10"]}' >&log.txt
+    res=$?
+    set +x
+    peer chaincode invoke -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n contract $PEER_CONN_PARMS -c '{"Args":["invoke","a","b","10"]}' >&log.txt
     res=$?
     set +x
   fi
