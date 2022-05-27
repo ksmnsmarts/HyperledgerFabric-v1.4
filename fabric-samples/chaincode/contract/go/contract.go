@@ -122,7 +122,7 @@ func (s *SmartContract) queryTest(APIstub shim.ChaincodeStubInterface, args []st
 // 계약서 업로드
 func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	// fmt.Println("문서 _Id값:" + args)
+	// fmt.Println("문서 _Id값:" + args)//
 
 	if len(args) != 14 {
 		return shim.Error("Incorrect number of arguments. Expecting 14")
