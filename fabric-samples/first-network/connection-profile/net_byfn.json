@@ -32,7 +32,7 @@
             "Org1MSP": {
                     "mspid": "Org1MSP",
                     "adminPrivateKey": {
-                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/13790efb6fbbdd7867ff70c50c182f2eeedf24b98932d0523db1de461f246663_sk"
+                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/fa6e9cf07a5ffa937d2914baa13cd66a65671a735789e254efc4b6ee32f89a6f_sk"
                     },
                     "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
                     "signedCert": {
@@ -42,7 +42,7 @@
             "Org2MSP": {
                     "mspid": "Org2MSP",
                     "adminPrivateKey": {
-                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org2.example.com/msp/keystore/  e0f66723d8b78cc256a7930a21fad344ae78e09369cf353f372bf009f90ef48c_sk"
+                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org2.example.com/msp/keystore/  1189845d5e2ee95cd99fbfaedddb2631ac0c563a3016ea5ed4fb45d3b5710a0f_sk"
                     },
                     "peers": ["peer0.org2.example.com","peer1.org2.example.com"],
                     "signedCert": {

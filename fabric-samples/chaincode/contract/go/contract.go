@@ -139,7 +139,6 @@ func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args
 }
 
 // 보낸이 서명
-
 func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
@@ -165,8 +164,8 @@ func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []s
 	return shim.Success(nil)
 }
 
-// 받은이 서명
 
+// 받은이 서명
 func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
@@ -191,7 +190,6 @@ func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args [
 }
 
 // 계약 거절
-
 func (s *SmartContract) rejectContract(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
