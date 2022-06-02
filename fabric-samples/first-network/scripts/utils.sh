@@ -151,7 +151,7 @@ instantiateChaincode() {
     peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n document -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
     res=$?
     set +x
-    peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
+    peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org1MSP.peer')" --collections-config /opt/gopath/src/github.com/chaincode/contract/go/collections_config.json >&log.txt
     res=$?
     set +x
   else
@@ -164,7 +164,7 @@ instantiateChaincode() {
     res=$?
     set +x
     set -x
-    peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')" >&log.txt
+    peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n contract -l ${LANGUAGE} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer','Org1MSP.peer')" --collections-config /opt/gopath/src/github.com/chaincode/contract/go/collections_config.json >&log.txt
     res=$?
     set +x
   fi

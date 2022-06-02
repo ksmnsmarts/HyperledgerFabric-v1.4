@@ -1,107 +1,107 @@
 {
-    "name": "net_byfn",
-    "version": "1.0.0",
-    "client": {
-            "tlsEnable": true,
-            "adminCredential": {
-                    "id": "exploreradmin",
-                    "password": "exploreradminpw"
-            },
-            "enableAuthentication": false,
-            "organization": "Org1MSP",
-            "connection": {
-                    "timeout": {
-                            "peer": {
-                                    "endorser": "300"
-                            },
-                            "orderer": "300"
-                    }
-            }
-    },
-    "channels": {
-            "mychannel": {
-                    "peers": {
-                            "peer0.org1.example.com": {},
-                            "peer1.org1.example.com": {},
-                            "peer0.org2.example.com": {},
-                            "peer1.org2.example.com": {}
-                    }
-            }
-    },
-    "organizations": {
-            "Org1MSP": {
-                    "mspid": "Org1MSP",
-                    "adminPrivateKey": {
-                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/fa6e9cf07a5ffa937d2914baa13cd66a65671a735789e254efc4b6ee32f89a6f_sk"
+        "name": "net_byfn",
+        "version": "1.0.0",
+        "client": {
+                "tlsEnable": true,
+                "adminCredential": {
+                        "id": "exploreradmin",
+                        "password": "exploreradminpw"
+                },
+                "enableAuthentication": false,
+                "organization": "Org1MSP",
+                "connection": {
+                        "timeout": {
+                                "peer": {
+                                        "endorser": "300"
+                                },
+                                "orderer": "300"
+                        }
+                }
+        },
+        "channels": {
+                "mychannel": {
+                        "peers": {
+                                "peer0.org1.example.com": {},
+                                "peer1.org1.example.com": {},
+                                "peer0.org2.example.com": {},
+                                "peer1.org2.example.com": {}
+                        }
+                }
+        },
+        "organizations": {
+                "Org1MSP": {
+                        "mspid": "Org1MSP",
+                        "adminPrivateKey": {
+                                "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/fa6e9cf07a5ffa937d2914baa13cd66a65671a735789e254efc4b6ee32f89a6f_sk"
+                        },
+                        "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+                        "signedCert": {
+                                "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem"
+                        }
+                },
+                "Org2MSP": {
+                        "mspid": "Org2MSP",
+                        "adminPrivateKey": {
+                                "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org2.example.com/msp/keystore/  1189845d5e2ee95cd99fbfaedddb2631ac0c563a3016ea5ed4fb45d3b5710a0f_sk"
+                        },
+                        "peers": ["peer0.org2.example.com","peer1.org2.example.com"],
+                        "signedCert": {
+                                "path": "/tmp/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/ Admin@org2.example.com-cert.pem"
+                        }
+                }
+        },
+        "peers": {
+                "peer0.org1.example.com": {
+                    "url": "grpcs://peer0.org1.example.com:7051",
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
                     },
-                    "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
-                    "signedCert": {
-                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem"
+                    "grpcOptions": {
+    
+                        "ssl-target-name-override": "peer0.org1.example.com",
+        
+                        "request-timeout": 120001
+        
                     }
-            },
-            "Org2MSP": {
-                    "mspid": "Org2MSP",
-                    "adminPrivateKey": {
-                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org2.example.com/msp/keystore/  1189845d5e2ee95cd99fbfaedddb2631ac0c563a3016ea5ed4fb45d3b5710a0f_sk"
+                },
+                "peer1.org1.example.com": {
+                    "url": "grpcs://peer1.org1.example.com:8051",
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
                     },
-                    "peers": ["peer0.org2.example.com","peer1.org2.example.com"],
-                    "signedCert": {
-                            "path": "/tmp/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/ Admin@org2.example.com-cert.pem"
+                    "grpcOptions": {
+    
+                        "ssl-target-name-override": "peer1.org1.example.com",
+        
+                        "request-timeout": 120001
+        
                     }
-            }
-    },
-    "peers": {
-            "peer0.org1.example.com": {
-                "url": "grpcs://peer0.org1.example.com:7051",
-                "tlsCACerts": {
-                        "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
                 },
-                "grpcOptions": {
-
-                    "ssl-target-name-override": "peer0.org1.example.com",
+                "peer0.org2.example.com": {
+                    "url": "grpcs://peer0.org2.example.com:9051",
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+                    },
+                    "grpcOptions": {
     
-                    "request-timeout": 120001
-    
-                }
-            },
-            "peer1.org1.example.com": {
-                "url": "grpcs://peer1.org1.example.com:8051",
-                "tlsCACerts": {
-                        "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+                        "ssl-target-name-override": "peer0.org2.example.com",
+        
+                        "request-timeout": 120001
+        
+                    }
                 },
-                "grpcOptions": {
-
-                    "ssl-target-name-override": "peer1.org1.example.com",
+                "peer1.org2.example.com": {
+                    "url": "grpcs://peer1.org2.example.com:10051",
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
+                    },
+                    "grpcOptions": {
     
-                    "request-timeout": 120001
-    
+                        "ssl-target-name-override": "peer1.org2.example.com",
+        
+                        "request-timeout": 120001
+        
+                    }
                 }
-            },
-            "peer0.org2.example.com": {
-                "url": "grpcs://peer0.org2.example.com:9051",
-                "tlsCACerts": {
-                        "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
-                },
-                "grpcOptions": {
-
-                    "ssl-target-name-override": "peer0.org2.example.com",
-    
-                    "request-timeout": 120001
-    
-                }
-            },
-            "peer1.org2.example.com": {
-                "url": "grpcs://peer1.org2.example.com:10051",
-                "tlsCACerts": {
-                        "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
-                },
-                "grpcOptions": {
-
-                    "ssl-target-name-override": "peer1.org2.example.com",
-    
-                    "request-timeout": 120001
-    
-                }
-            }
+        }
     }
-}
